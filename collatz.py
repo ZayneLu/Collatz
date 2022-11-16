@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 nodes = {}
 max_depth = 0
 
+#calculates collatz path for x, then depth of all new nodes
 def collatz(x:int):
 	#find path
 	start = x
@@ -28,7 +29,9 @@ def collatz(x:int):
 			max_depth = max(max_depth, i+1)
 	
 	
-def find_path(x):	
+#returns list of nodes from x to 1
+#will throw an exception if x is not includes in nodes; use collatz(x) first
+def find_path(x: int):	
 	path = [x]
 	while x != 1:
 		x = nodes[x][0]
@@ -40,6 +43,7 @@ def next(x: int):
 	
 
 edges = []
+#generate and display graph 
 def display():
 	#add new edges to graph
 	for key in nodes:
@@ -58,8 +62,3 @@ def display():
 		
 	nx.draw_networkx(G, pos)
 	plt.show()
-
-collatz(7)
-collatz(15)
-collatz(128)
-display()
